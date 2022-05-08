@@ -2,15 +2,19 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Momentum App</title>
 </head>
 <body>
-  <div class="hello">
-    <h1 class="sexy-font">나를 눌러줘~~</h1>
-  </div>
+  <!-- form 안에 넣어줘야함 -->
+  <form class="hidden" id = "login-form" >
+    <!-- required maxlength = 글자수 제한 -->
+    <input required maxlength="15" type="text" placeholder="이름이 무었입니까?" />
+    <!-- submit = 버튼처럼 활용, 클릭이 아닌 엔터로도 가능 -->
+    <input type="submit" value="로그인" />
+  </form>
+  <h1 id="greeting" class="hidden"></h1>
   <script src="app.js"></script>
 </body>
 </html>

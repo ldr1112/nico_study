@@ -1,8 +1,35 @@
-const h1 = document.querySelector("div.hello:first-child h1")
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-// toggle은 한번 한번 클릭으로 함수를 받아드림(버튼이랑 비슷함), 코드도 간편함
-function handTitleClick() {
-  h1.classList.toggle("clicked")
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
+
+function onLoginSubmit(event) {
+  event.preventDefault();
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  const username = loginInput.value;
+  // 웹 미니 DB 만들기 localStorage
+  localStorage.setItem("USERNAME_KEY", username);
+  paintGreetings(username)
 }
 
-h1.addEventListener("click", handTitleClick)
+function paintGreetings(username) {
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+const saveUsername = localStorage.getItem("USERNAME_KEY");
+
+if (saveUsername === null) {
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+  paintGreetings(saveUsername)
+}
+
+// 웹 콘솔 창에서 localStorage 로 DB 저장, 추가, 삭제 등을 할 수 있음
+// localStorage.setItem("username", "lee")
+// localStorage.getItem("usename", "lee")
+// localStorage.getItem("username")
+// localStorage.removeItem("username")
